@@ -31,8 +31,6 @@ public class OrderItem implements Serializable {
 
     private Integer orderId;
 
-    private Order order;
-
     private Integer printStatus;
 
     private String pictureBase64;
