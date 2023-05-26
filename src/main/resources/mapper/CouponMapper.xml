@@ -16,4 +16,9 @@
         WHERE coupon_code = #{code} and is_valid = 1
     </select>
 
+    <update id="useCoupon" parameterType="java.lang.String">
+        UPDATE coupon SET is_valid = 0
+        WHERE coupon_code = #{code}
+    </update>
+
 </mapper>

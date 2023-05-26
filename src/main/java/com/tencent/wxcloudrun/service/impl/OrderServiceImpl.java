@@ -39,6 +39,7 @@ public class OrderServiceImpl implements OrderService {
             Coupon coupon = couponMapper.getCoupon(orderRequest.getCoupon_code());
             if(coupon != null && coupon.getCouponValue() > 0){
                 couponValue = coupon.getCouponValue();
+                couponMapper.useCoupon(orderRequest.getCoupon_code());
             }else{
                 throw new Exception("优惠券/代金券券码不正确");
             }
