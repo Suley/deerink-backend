@@ -13,7 +13,7 @@
     <select id="getCoupon" resultMap="couponMapper" parameterType="java.lang.String">
         SELECT `coupon_value`, `coupon_type`, `coupon_code`, `is_valid`
         FROM coupon
-        WHERE coupon_code = #{code}
+        WHERE coupon_code = #{code} and is_valid = 1
     </select>
 
 </mapper>
