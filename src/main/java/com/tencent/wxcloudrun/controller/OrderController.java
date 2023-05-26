@@ -41,7 +41,7 @@ public class OrderController {
             Order order = orderService.placeOrder(request);
             return ApiResponse.ok(order);
         } catch (Exception e){
-            return ApiResponse.error("内部错误");
+            return ApiResponse.error("内部错误=>" + e.getMessage());
         }
     }
 }
