@@ -44,18 +44,19 @@ public class OrderServiceImpl implements OrderService {
         }
         List<OrderItem> orderItems = new ArrayList<>();
         for(OrderItemRequest orderItemRequest : orderRequest.getOrder_items()){
+            OrderItem orderItem = new OrderItem();
             itemAmount++;
             Double price = 0.00;
             Double itemTotalPrice = 0.00;
             if(orderItemRequest.getCustom_type().equals("tshirt")){
                 price = 99.00;
+                orderItem.setPrintStatus(-1);
             }else if(orderItemRequest.getCustom_type().equals("cupsticker")){
                 price = 5.00;
+                orderItem.setPrintStatus(0);
             }
             itemTotalPrice = price * orderItemRequest.getAmount();
             totalPrice += itemTotalPrice;
-
-            OrderItem orderItem = new OrderItem();
             orderItem.setPrompt(orderItemRequest.getPrompt());
             orderItem.setSeed(orderItemRequest.getSeed());
             orderItem.setParams(orderItemRequest.getParams());
@@ -66,6 +67,7 @@ public class OrderServiceImpl implements OrderService {
             orderItem.setCustomType(orderItemRequest.getCustom_type());
             orderItem.setCustomParam(orderItemRequest.getCustom_param());
             orderItem.setPictureBase64(orderItemRequest.getPicture_base64());
+
             orderItems.add(orderItem);
         }
         settlementPrice = totalPrice - couponValue;
