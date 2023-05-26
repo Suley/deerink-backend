@@ -1,6 +1,5 @@
 package com.tencent.wxcloudrun.service.impl;
 
-import com.sun.tools.javac.util.StringUtils;
 import com.tencent.wxcloudrun.dao.CouponMapper;
 import com.tencent.wxcloudrun.dao.OrderItemMapper;
 import com.tencent.wxcloudrun.dao.OrderMapper;
