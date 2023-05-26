@@ -6,7 +6,7 @@
         <id property="id" column="id"/>
         <result property="couponValue" column="coupon_value"/>
         <result property="isValid" column="is_valid" javaType="java.lang.Boolean" />
-        <result property="couponType" column="coupon_type" javaType="java.lang.String"  />
+        <result property="couponType" column="coupon_type" javaType="java.lang.Integer"  />
         <result property="couponCode" column="coupon_code" javaType="java.lang.String"  />
     </resultMap>
 
