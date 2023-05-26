@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tencent.wxcloudrun.dao.CouponMapper">
+
+    <resultMap id="couponMapper" type="com.tencent.wxcloudrun.model.Coupon">
+        <id property="id" column="id"/>
+        <result property="couponValue" column="coupon_value"/>
+        <result property="isValid" column="is_valid" javaType="java.lang.Boolean" />
+        <result property="couponType" column="coupon_type" javaType="java.lang.String"  />
+        <result property="couponCode" column="coupon_code" javaType="java.lang.String"  />
+    </resultMap>
+
+    <select id="getCoupon" resultMap="couponMapper" parameterType="java.lang.String">
+        SELECT `coupon_value`, `coupon_type`, `coupon_code`, `is_valid`
+        FROM coupon
+        WHERE coupon_code = #{code}
+    </select>
+
+</mapper>
