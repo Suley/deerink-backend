@@ -19,6 +19,8 @@ public class Order implements Serializable {
 
     private String consigneePhone;
 
+    private String couponCode;
+
     private Double totalPrice;
 
     private Double discountPrice;
