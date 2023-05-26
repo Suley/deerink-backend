@@ -76,6 +76,7 @@ public class OrderServiceImpl implements OrderService {
         settlementPrice = totalPrice - couponValue;
         order.setTotalPrice(totalPrice);
         if(settlementPrice <= 0.00){
+            settlementPrice = 0.00;
             order.setIsPaid(1);
         }else{
             order.setIsPaid(0);
