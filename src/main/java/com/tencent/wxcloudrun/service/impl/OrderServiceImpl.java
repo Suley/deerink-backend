@@ -37,10 +37,10 @@ public class OrderServiceImpl implements OrderService {
         Integer itemAmount = 0;
         if(!orderRequest.getCoupon_code().isEmpty()){
             Coupon coupon = couponMapper.getCoupon(orderRequest.getCoupon_code());
-            if(coupon != null){
+            if(coupon != null && coupon.getCouponValue() > 0){
                 couponValue = coupon.getCouponValue();
             }else{
-                throw new Exception("优惠券/代金券券码错误");
+                throw new Exception("优惠券/代金券券码不正确");
             }
         }
         List<OrderItem> orderItems = new ArrayList<>();
