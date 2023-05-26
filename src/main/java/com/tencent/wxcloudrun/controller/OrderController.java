@@ -10,10 +10,7 @@ import com.tencent.wxcloudrun.dto.CounterRequest;
 import com.tencent.wxcloudrun.model.Counter;
 import com.tencent.wxcloudrun.service.CounterService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -44,4 +41,20 @@ public class OrderController {
             return ApiResponse.error("内部错误=>" + e.getMessage());
         }
     }
+
+    /**
+     * 获取当前订单
+     * @return API response json
+     */
+    @GetMapping(value = "/api/orders/{id}")
+    ApiResponse getOrderDetail(@PathVariable("id") Integer id) {
+        logger.info("/api/order/get get order detail request");
+        Order order = orderService.getOrderDetail(1);
+        if(order != null){
+            return ApiResponse.ok(order);
+        }else{
+            return ApiResponse.error("无此订单");
+        }
+    }
+
 }

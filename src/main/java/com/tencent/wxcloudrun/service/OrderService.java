@@ -5,4 +5,6 @@ import com.tencent.wxcloudrun.model.Order;
 
 public interface OrderService {
     Order placeOrder(OrderRequest orderRequest);
+
+    Order getOrderDetail(Integer id);
 }

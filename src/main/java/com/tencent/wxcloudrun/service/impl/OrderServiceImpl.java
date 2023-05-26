@@ -85,4 +85,13 @@ public class OrderServiceImpl implements OrderService {
         order.setOrderItems(orderItems);
         return order;
     }
+
+    @Override
+    public Order getOrderDetail(Integer id) {
+        Order order = orderMapper.selectOrderById(id);
+        if(order != null){
+            order.setOrderItems(orderMapper.selectOrderItemsByOrderId(id));
+        }
+        return order;
+    }
 }

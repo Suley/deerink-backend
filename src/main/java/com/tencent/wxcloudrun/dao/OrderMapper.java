@@ -2,10 +2,10 @@ package com.tencent.wxcloudrun.dao;
 
 import com.tencent.wxcloudrun.dto.OrderRequest;
 import com.tencent.wxcloudrun.model.Order;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Param;
+import com.tencent.wxcloudrun.model.OrderItem;
+import org.apache.ibatis.annotations.*;
+
+import java.util.List;
 
 @Mapper
 public interface OrderMapper {
@@ -14,4 +14,9 @@ public interface OrderMapper {
             "#{order.settlementPrice}, #{order.itemAmount})")
     @Options(useGeneratedKeys = true, keyProperty = "order.id")
     void insertOrder(@Param("order") Order order);
+    @Select("SELECT * FROM `order` WHERE id = #{id}")
+    Order selectOrderById(@Param("id") Integer id);
+
+    @Select("SELECT * FROM order_item WHERE order_id = #{orderId}")
+    List<OrderItem> selectOrderItemsByOrderId(@Param("orderId") Integer orderId);
 }
