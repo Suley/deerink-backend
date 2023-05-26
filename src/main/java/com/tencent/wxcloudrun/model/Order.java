@@ -8,6 +8,9 @@ import java.util.List;
 @Data
 public class Order implements Serializable {
 
+    public Order() {
+        // 无参构造函数
+    }
     private Integer id;
 
     private String consigneeName;
@@ -23,6 +26,8 @@ public class Order implements Serializable {
     private Double settlementPrice;
 
     private Integer itemAmount;
+
+    private Integer isPaid;
 
     private List<OrderItem> orderItems;
     // Getters and setters

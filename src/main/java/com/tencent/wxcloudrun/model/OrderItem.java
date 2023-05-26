@@ -7,6 +7,9 @@ import java.io.Serializable;
 @Data
 public class OrderItem implements Serializable {
 
+    public OrderItem() {
+        // 无参构造函数
+    }
     private Integer id;
 
     private String picture;

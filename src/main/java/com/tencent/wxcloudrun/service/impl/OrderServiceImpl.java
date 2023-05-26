@@ -29,7 +29,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order placeOrder(OrderRequest orderRequest) {
+    public Order placeOrder(OrderRequest orderRequest) throws Exception {
         Order order = new Order();
         Double couponValue = 0.00;
         Double totalPrice = 0.00;
@@ -39,6 +39,8 @@ public class OrderServiceImpl implements OrderService {
             Coupon coupon = couponMapper.getCoupon(orderRequest.getCoupon_code());
             if(coupon != null){
                 couponValue = coupon.getCouponValue();
+            }else{
+                throw new Exception("优惠券/代金券券码错误");
             }
         }
         List<OrderItem> orderItems = new ArrayList<>();
@@ -71,6 +73,11 @@ public class OrderServiceImpl implements OrderService {
         }
         settlementPrice = totalPrice - couponValue;
         order.setTotalPrice(totalPrice);
+        if(settlementPrice <= 0.00){
+            order.setIsPaid(1);
+        }else{
+            order.setIsPaid(0);
+        }
         order.setConsigneeName(orderRequest.getConsignee_name());
         order.setConsigneePhone(orderRequest.getConsignee_phone());
         order.setConsigneeFullAddress(orderRequest.getConsignee_fulladdress());

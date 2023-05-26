@@ -9,9 +9,9 @@ import java.util.List;
 
 @Mapper
 public interface OrderMapper {
-    @Insert("INSERT INTO `order` (id, consignee_name, consignee_full_address, consignee_phone, total_price, discount_price, settlement_price, item_amount) " +
+    @Insert("INSERT INTO `order` (id, consignee_name, consignee_full_address, consignee_phone, total_price, discount_price, settlement_price, item_amount, is_paid) " +
             "VALUES (#{order.id}, #{order.consigneeName}, #{order.consigneeFullAddress}, #{order.consigneePhone}, #{order.totalPrice}, #{order.discountPrice}, " +
-            "#{order.settlementPrice}, #{order.itemAmount})")
+            "#{order.settlementPrice}, #{order.itemAmount}, #{order.isPaid})")
     @Options(useGeneratedKeys = true, keyProperty = "order.id")
     void insertOrder(@Param("order") Order order);
     @Select("SELECT * FROM `order` WHERE id = #{id}")

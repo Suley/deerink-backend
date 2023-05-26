@@ -38,7 +38,7 @@ public class OrderController {
             Order order = orderService.placeOrder(request);
             return ApiResponse.ok(order);
         } catch (Exception e){
-            return ApiResponse.error("内部错误=>" + e.getMessage());
+            return ApiResponse.error(e.getMessage());
         }
     }
 
@@ -49,7 +49,7 @@ public class OrderController {
     @GetMapping(value = "/api/orders/{id}")
     ApiResponse getOrderDetail(@PathVariable("id") Integer id) {
         logger.info("/api/order/get get order detail request");
-        Order order = orderService.getOrderDetail(1);
+        Order order = orderService.getOrderDetail(id);
         if(order != null){
             return ApiResponse.ok(order);
         }else{
